@@ -1,0 +1,147 @@
+/* Base reset and structure */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    max-height: 100%;
+}
+
+/* Header */
+header {
+    background-color: #222;
+    color: white;
+    padding: 0.5rem 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #444;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.button:hover {
+    background-color: #666;
+}
+
+/* Main layout */
+main {
+    display: flex;
+    flex: 1;
+
+}
+
+/* People (sidebar) */
+#people {
+    flex: 1;
+    background-color: #222;
+    color: white;
+    padding: 1rem;
+    min-width: 200px;
+    max-width: 300px;
+    height: 88dvh;
+    overflow-y: scroll;
+
+}
+
+#people div {
+    background-color: #333;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+#people div p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+
+}
+
+/* Chat section */
+#chat {
+    flex:3;
+    background-color: green;
+    border-left: 1px solid #ccc;
+
+}
+
+#messages {
+
+    flex: 1;
+
+    color: white;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    max-height: 88dvh;
+    min-height: 88dvh;
+    padding: 1rem;
+    background-color: black;
+}
+
+#messages div {
+    background-color: #0078d7;
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    width: fit-content;
+    max-width:45%;
+    height: fit-content;
+    p
+    {
+        word-break: break-word;
+    }
+}
+
+/* Chat input area */
+#chat-form {
+    display: flex;
+    padding: 0.75rem;
+    border-top: 1px solid #ccc;
+    background-color: #f5f5f5;
+}
+
+#chat-form input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 1rem;
+    margin-right: 0.5rem;
+}
+
+#chat-form button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #0078d7;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#chat-form button:hover {
+    background-color: #005ea6;
+}
+footer
+{
+    position: sticky;
+}
+
+

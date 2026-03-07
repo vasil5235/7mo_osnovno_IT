@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    /* Base reset and structure */
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Header */
+    header {
+        background-color: #222;
+        color: white;
+        padding: 0.5rem 1rem;
+    }
+
+    nav {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+    }
+
+    .button {
+        padding: 0.5rem 1rem;
+        border: none;
+        background-color: #444;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    main
+    {
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        min-height: 100%;
+
+
+
+    }
+    #searchbar
+    {
+        display: flex;
+        margin: 1rem;
+        align-items: center;
+        justify-content: center;
+    }
+    #searchbar form input
+    {
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+    }
+
+    #reports-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        width: 100%;
+
+        .reports
+        {
+            height: 10rem;
+            border: 5px solid #222;
+            flex: 0 1 20rem;
+            background-color: #5f5f5f;
+            padding: 0.5rem;
+            border-radius: 7.5px;
+            p{
+                color: white;
+                margin: 0;
+                font-size: 1.2rem;
+                margin-bottom: 0.5rem;
+            }
+        }
+
+    }
+
+    .button:hover {
+        background-color: #005ea6;
+    }
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Responsive Chat App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<header>
+    <nav>
+        <a href="../chat.html" target="_parent" style="color: #FFFFFF;"><button class="button">чат</button></a>
+        <a  href="reports.html" target="_parent" style="color: #FFFFFF;"><button class="button">доклади</button></a>
+
+    </nav>
+</header>
+<main>
+    <nav id="searchbar">
+    <form>
+        <button class="button" id="waiting">Изчакващи</button>
+        <button class="button" id="approved">Одобрени</button>
+        <button class="button" id="rejected">Отказани</button>
+
+    </form>
+    </nav>
+    <div id="reports-container">
+    </div>
+
+    <script src="reports.js"></script>
+</main>
+</body>
+<script>
+
+    let container = document.getElementById("reports-container");
+    let waiting = document.getElementById('waiting');
+    let approved = document.getElementById('approved');
+    let  rejected = document.getElementById('rejected');
+    document.addEventListener('DOMContentLoaded', async () => {
+        let response = await fetch('http://localhost:3000/reports', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+        })
+        if(response.ok)
+        {
+
+            let data = await response.json();
+            let status = null;
+            for(let report of data)
+            {
+                CreateElements(report);
+            }
+            rejected.addEventListener('click', (e) =>{
+                e.preventDefault();
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                status = 'reject'
+                for(let report of data)
+                {
+                    if(report.Status == status)
+                    {
+                        CreateElements(report);
+                    }
+                }
+
+            });
+            approved.addEventListener('click', (e) =>{
+                e.preventDefault();
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                status = 'approve';
+
+
+                for(let report of data)
+                {
+
+                    if(report.Status == status)
+                    {
+                        CreateElements(report);
+                    }
+                }
+
+            });
+            waiting.addEventListener('click', (e) =>{
+                e.preventDefault();
+                while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
+                status = 'waiting';
+                for(let report of data)
+                {
+                    if(report.Status == status)
+                    {
+                        CreateElements(report);
+                    }
+                }
+            });
+
+
+
+
+        }
+    })
+    function CreateElements(reports)
+    {
+        let div= document.createElement("div");
+        div.classList.add("reports");
+        div.id = reports.ID;
+        let p = document.createElement("p");
+        p.textContent = JSON.parse(reports.report).title;
+        div.appendChild(p);
+        container.appendChild(div);
+    }
+    document.addEventListener('click', (event) => {
+        if(event.target.classList.contains("reports")) {
+            window.location.href =`report.html?id=${event.target.id}`;
+        }
+    })
+</script>
+</html>
