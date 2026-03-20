@@ -11,6 +11,7 @@ const pool = mysql.createPool({
     password: 'Camera77',
     database: 'SiteData'
 }).promise();
+const port = process.env.PORT || 3000;
 
 async function GetNotes(name) {
     const [rows] = await pool.query(`SELECT * FROM Users WHERE Username = ?`, [name]);
@@ -95,7 +96,7 @@ app.get('/reports', async (req, res) => {
 
     res.status(200).send(JSON.stringify(data));
 })
-server.listen(3000,'0.0.0.0', () => {
+server.listen(port,'0.0.0.0', () => {
     console.log('Master Server running on http://localhost:3000');
 });
 
