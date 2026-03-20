@@ -93,7 +93,7 @@
             </body>
             </html>
         </h1>
-        <form action="https://localhost:3000/login" method="post">
+        <form method="post">
 
             <input type="text" name="username" id="username" placeholder="Username" required>
             <input type="password" name="password" id="password" placeholder="Password" required>
@@ -115,7 +115,7 @@
         const password = document.getElementById('password').value;
 
         try {
-            const response = await fetch(`http://${process.env.IP}/login`, {
+            const response = await fetch(`${process.env.IP}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
