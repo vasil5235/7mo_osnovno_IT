@@ -22,7 +22,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public/frontend"));
 
-// Import modules
+
 const Login = require('./Login.js');
 // const chatSystem = require('./chatsystem.js');
 const ws = require("ws");

@@ -196,7 +196,7 @@
     document.addEventListener('DOMContentLoaded', async () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const ID = urlParams.get('id');
+        const ID1 = urlParams.get('id');
 
         let response = await fetch('https://liftup-rb7p.onrender.com/reports', {
             method: 'GET',
@@ -207,19 +207,27 @@
         })
         if(response.ok)
         {
-            let data = await response.json();
-            data = data[ID-1];
-            console.log(data);
-            console.log(data.report);
-            console.log(data.place);
-            console.log((data.report).place);
-            console.log(data.report.place);
+            let data;
+            let info = await response.json();
+            console.log(info);
 
-            title.innerHTML = (data.report).title;
-            person.innerHTML = (data.report).person;
-            place.innerHTML = (data.report).place;
-            accident.innerHTML = (data.report).accident;
-            time.innerHTML = (data.report).time;
+            for(let i = 0; i < info.length; i++){
+                console.log(info[i].ID);
+                if(info[i].ID == ID1)
+                {
+                    console.log('sucess');
+                    data = info[i] ;
+                    break;
+                }
+            }
+
+            console.log(data);
+
+            title.innerHTML = (data.report.title);
+            person.innerHTML = (data.report.person);
+            place.innerHTML = (data.report.place);
+            accident.innerHTML = (data.report.accident);
+            time.innerHTML = (data.report.time) ;
         }
     })
     buttons.addEventListener('click', async (e) => {

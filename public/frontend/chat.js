@@ -1,4 +1,4 @@
-const websocket = new WebSocket('ws://192.168.1.116:3000/messages');
+const websocket = new WebSocket('wss://liftup-rb7p.onrender.com/messages');
 
 let message = document.getElementById('message');
 let container = document.getElementById('messages');
@@ -24,6 +24,7 @@ websocket.onmessage = function (event) {
     else {
         div.style.backgroundColor = "blue";
         message.value = "";
+        event.data = "";
     }
     div.appendChild(p);
     container.appendChild(div);
