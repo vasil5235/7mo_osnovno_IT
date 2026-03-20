@@ -4,7 +4,7 @@ let waiting = document.getElementById('waiting');
 let approved = document.getElementById('approved');
 let  rejected = document.getElementById('rejected');
 document.addEventListener('DOMContentLoaded', async () => {
-    let response = await fetch('http://localhost:3000/reports', {
+    let response = await fetch('https://liftup-rb7p.onrender.com/reports', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

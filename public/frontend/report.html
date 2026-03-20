@@ -198,7 +198,7 @@
         const urlParams = new URLSearchParams(queryString);
         const ID = urlParams.get('id');
 
-        let response = await fetch('http://localhost:3000/reports', {
+        let response = await fetch('https://liftup-rb7p.onrender.com/reports', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -228,7 +228,7 @@
                     id: ID,
                     status: e.target.value
                 }
-            let response = await fetch('http://localhost:3000/updateStatus', {
+            let response = await fetch('https://liftup-rb7p.onrender.com/updateStatus', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

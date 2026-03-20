@@ -5,10 +5,10 @@ const mysql = require('mysql2');
 const server = http.createServer(app);
 const cors = require('cors');
 const pool = mysql.createPool({
-    host: '127.0.0.1',
-    port: 3306,
-    user: 'nouser',
-    password: 'Camera77',
+    host: 'sitedatahost-1-vasilmakendziev-1c07.c.aivencloud.com',
+    port: 17768,
+    user: 'avnadmin',
+    password: 'AVNS_cucNNUcD2hPDZ2Gcf9_',
     database: 'SiteData'
 }).promise();
 const port = process.env.PORT || 3000;
@@ -97,7 +97,7 @@ app.get('/reports', async (req, res) => {
     res.status(200).send(JSON.stringify(data));
 })
 server.listen(port,'0.0.0.0', () => {
-    console.log('Master Server running on http://localhost:3000');
+    console.log('Master Server running on https://liftup-rb7p.onrender.com');
 });
 
 
