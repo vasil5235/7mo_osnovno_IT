@@ -14,9 +14,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 
 
-app.get('/images', (req, res) => {
-    res.status(200).sendFile(path.join('./public/frontend/LoginImage.png'));
-})
+
 app.get('/', (req, res) => {
 
     res.sendFile(path.join(__dirname, '../frontend','login.html'));
