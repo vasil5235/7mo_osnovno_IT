@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 app.get('/images', (req, res) => {
-    res.status(200).sendFile(path.join('/home/nouser/WebstormProjects/Bullying-reporting-system/public/frontend/LoginImage.png'));
+    res.status(200).sendFile(path.join('./public/frontend/LoginImage.png'));
 })
 app.get('/', (req, res) => {
 
