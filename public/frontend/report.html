@@ -209,11 +209,12 @@
         {
             let data = await response.json();
             data = data[ID-1];
-            title.innerHTML = JSON.parse(data.report).title;
-            person.innerHTML = JSON.parse(data.report).person;
-            place.innerHTML = JSON.parse(data.report).place;
-            accident.innerHTML = JSON.parse(data.report).accident;
-            time.innerHTML = JSON.parse(data.report).time;
+            console.log(data.report).person;
+            title.innerHTML = (data.report).title;
+            person.innerHTML = (data.report).person;
+            place.innerHTML = (data.report).place;
+            accident.innerHTML = (data.report).accident;
+            time.innerHTML = (data.report).time;
         }
     })
     buttons.addEventListener('click', async (e) => {
