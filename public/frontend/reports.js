@@ -79,7 +79,7 @@ function CreateElements(reports)
     div.classList.add("reports");
     div.id = reports.ID;
     let p = document.createElement("p");
-    p.textContent = JSON.parse(reports.report).title;
+    p.textContent = (reports.report).title;
     div.appendChild(p);
     container.appendChild(div);
 }
