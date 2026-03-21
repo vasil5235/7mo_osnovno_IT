@@ -169,7 +169,7 @@
             <textarea class="reporter"  id="place" readonly></textarea>
         </div>
         <div>
-            <p>Какво стана</p>
+            <p>Какво стана?</p>
             <textarea class="reporter" style="height: 10rem" id="accident" readonly></textarea>
         </div>
         <div>
@@ -191,7 +191,7 @@
     document.addEventListener('DOMContentLoaded', async () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        const ID = urlParams.get('id');
+        const ID1 = urlParams.get('id');
 
         let response = await fetch('https://liftup-rb7p.onrender.com/reports', {
             method: 'GET',
@@ -202,46 +202,33 @@
         })
         if(response.ok)
         {
-            let data = await response.json();
-            data = data[ID-1];
-            title.innerHTML = JSON.parse(data.report).title;
-            person.innerHTML = JSON.parse(data.report).person;
-            place.innerHTML = JSON.parse(data.report).place;
-            accident.innerHTML = JSON.parse(data.report).accident;
-            time.innerHTML = JSON.parse(data.report).time;
-        }
-    })
-    buttons.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const ID = urlParams.get('id');
-        console.log(e.target.value);
-        if(e.target.id != 'chat') {
-            data =
+            let data;
+            let info = await response.json();
+            console.log(info);
+
+            for(let i = 0; i < info.length; i++){
+                console.log(info[i].ID);
+                if(info[i].ID == ID1)
                 {
-                    id: ID,
-                    status: e.target.value
+                    console.log('sucess');
+                    data = info[i] ;
+                    break;
                 }
-            let response = await fetch('https://liftup-rb7p.onrender.com/updateStatus', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            if (response.ok) {
-
-                window.alert("Успешно запазени промени!")
             }
-        }
-        else
-        {
-            window.location.href= '/chat.html';
-        }
 
+            console.log(data);
+
+            title.innerHTML = (data.report.title);
+            person.innerHTML = (data.report.person);
+            place.innerHTML = (data.report.place);
+            accident.innerHTML = (data.report.accident);
+            time.innerHTML = (data.report.time) ;
+        }
     })
+
+
+
+
 
 </script>
 </html>
